@@ -19,6 +19,7 @@
 	BOOL _showBorder;
 	BOOL _showNativeButtons;
 	BOOL _showTitleLabel;
+  NSString *_viewMode;
 }
 
 @synthesize sign;
@@ -68,7 +69,7 @@
 
 		[self addSubview:sign];
 
-		if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
+    if ( [_viewMode isEqual: @"portrait"] || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
 
 			if (_showTitleLabel) {
 				titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 24)];
@@ -177,6 +178,10 @@
 
 - (void)setShowTitleLabel:(BOOL)showTitleLabel {
 	_showTitleLabel = showTitleLabel;
+}
+
+- (void)setViewMode:(NSString *)viewMode {
+  _viewMode = viewMode;
 }
 
 -(void) onSaveButtonPressed {
